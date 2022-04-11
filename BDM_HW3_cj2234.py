@@ -1,5 +1,5 @@
 from pyspark import SparkContext
-import pandas as 
+import pandas as pd
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from pyspark.sql import SparkSession

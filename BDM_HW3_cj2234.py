@@ -6,7 +6,7 @@ from pyspark.sql import SparkSession
 
 
 def main(sc):
-    KFP = 'keyfood_products.csv'
+    KFP = '/tmp/bdm/keyfood_products.csv'
     dffkp = spark.read.load(KFP, format='csv',header = True, inferSchema = True)
 
     df1 = dffkp.withColumn('newupc',split(dffkp['upc'],'-').getItem(1))

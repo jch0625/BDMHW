@@ -1,8 +1,15 @@
 from pyspark import SparkContext
-import pandas as pd
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from pyspark.sql import SparkSession
+import csv
+import sys
+import json
+import numpy as np
+import pandas as pd
+import pyspark
+from pyspark.sql import functions as F
+from pyspark.sql import types as T
 
 
 def main(sc):
@@ -29,6 +36,14 @@ def main(sc):
     df5 = df4.join(dfkns2, df4.store == dfkns2.name, how = 'inner')
 
     outputTask1 = df5.withColumn('food_insecurity',(df5[10]*100).cast('int')).select('ItemName','price','food_insecurity')
+    outputTask1.rdd.saveAsTextFile(sys.argv[1])
+    
+
+
+
+    
+
 if __name__ == "__main__":
- sc = SparkContext()
- main(sc)
+
+    sc = SparkContext()
+    main(sc)

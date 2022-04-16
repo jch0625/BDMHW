@@ -32,7 +32,7 @@ dfkns2 = spark.createDataFrame(dfkns1)
 dfksi = pd.read_csv('keyfood_sample_items.csv')
 dfksi['UPC code'] = dfksi['UPC code'].apply(lambda x : x.split('-')[1])
 dfksi.columns = ['upc','ItemName']
-
+dfksi1 = spark.createDataFrame(dfksi)
 df4 = df3.join(dfksi1, df3.upc == dfksi1.upc, how = 'inner')
 
 df5 = df4.join(dfkns2, df4.store == dfkns2.name, how = 'inner')
